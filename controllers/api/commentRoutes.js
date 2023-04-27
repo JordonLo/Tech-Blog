@@ -20,7 +20,7 @@ router.get('/', withAuth, async (req, res) => {
     }
 });
 
-// Gets a comment
+// Get one comment
 router.get('/:id', withAuth, async (req, res) => {
     try {
         const commentData = await Comment.findByPk(req.params.id, {
@@ -38,7 +38,7 @@ router.get('/:id', withAuth, async (req, res) => {
     }
 });
 
-// Creates a new comment
+// Create a new comment
 router.post('/', withAuth, async (req, res) => {
     try {
         const newComment = await Comment.create({
@@ -52,7 +52,7 @@ router.post('/', withAuth, async (req, res) => {
     }
 });
 
-// Deletes a comment
+// Delete a comment
 router.delete('/:id', withAuth, async (req, res) => {
     try {
         const commentData = await Comment.destroy({
@@ -63,7 +63,7 @@ router.delete('/:id', withAuth, async (req, res) => {
         });
 
         if (!commentData) {
-            res.status(404).json({ message: 'No comment found!' });
+            res.status(404).json({ message: 'No comment found with this id!' });
             return;
         }
 
